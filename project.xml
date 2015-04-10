@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- NMML reference: https://gist.github.com/1763850 -->
+	
+	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
+	<meta title="Metronomus" package="Metronomus" version="1.0.0" company="MichaPooh" />
+	
+	<!-- output -->
+	<app main="Main" file="Metronomus" path="bin" />
+	
+	<window background="#111111" fps="60" />
+	<window width="346" height="520" unless="mobile" />
+	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
+	
+	<!-- classpath, haxe libs -->
+	<source path="src" />
+	<haxelib name="openfl" />
+	<haxelib name="haxeui" />
+	<haxelib name="actuate" />
+	<haxelib name="stablexui" />
+	
+	<!-- assets -->
+	<!--<icon path="assets/openfl.svg" />-->
+	<icon path="assets/beatIcon.png" />
+	<assets path="assets" embed="true" />
+	
+	<!-- optimize output
+	<haxeflag name="-dce full" /> -->
+	
+</project>

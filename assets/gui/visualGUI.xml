@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Widget w="$Lib.current.stage.stageWidth">
+	<HBox id="'visualSettingsBar'" w="$Lib.current.stage.stageWidth" h="28" childPadding="5">
+		<Options id="'visualOptions'" h="28" w="150"
+			options = "[['Circle blend', 1], ['Bar scale', 2]]"/>
+		<Button id="'visualSettings_btn'" h="28" text="'Settings'" on-click="
+			
+			#Floating(visualPopup).show();" w="150" />
+	</HBox>
+	<Floating id="'visualPopup'" w="300" h="200" right="$Lib.current.stage.stageWidth - (#Button(visualSettings_btn).x + #Button(visualSettings_btn).w)" 
+		top="30" align="'center, absolute'" skin:Paint-color="0x333333" skin:Paint-border="2" on-display="
+			$this.right = $Lib.current.stage.stageWidth - (#Button(visualSettings_btn).x + #Button(visualSettings_btn).w);
+			
+			var f:Bool = false;
+			for(i in 0...#Options(colorOptions).options.length) {
+				var colorInt:Int = Std.parseInt(#Options(colorOptions).options[i][1]);
+				if(colorInt == Main.visualSettingsVO.color) {
+					#Options(colorOptions).value = #Options(colorOptions).options[i][1];
+					f = true;
+					break;
+				}
+			}
+			
+			if(!f) {
+				for(i in 0...#Options(colorOptions).options.length) {
+					if(#Options(colorOptions).options[i][0] == 'Custom') {
+						var colorStr:String = '0x' +StringTools.hex(Main.visualSettingsVO.color, 6);
+						#Options(colorOptions).options[i][1] = colorStr; 
+						#Options(colorOptions).value = colorStr;
+						break;
+					}
+				}
+			}
+		">
+		<VBox w="300" childPadding="5" >
+			<Text format-size="18" text="'Visual settings'"/>
+			<Widget h="15"/>
+			
+			<HBox w="300" h="28" >
+				<Text text="'Visual color: '" align="'right'" h="21" w="120" />
+				<InputText id="'visualColor_inp'" skin:Paint-border="1" w="75" h="21" text="'0x'+StringTools.hex(Main.visualSettingsVO.color, 6)"/>
+				<Widget w="5" />
+				<Options id="'colorOptions'" h="28" w="95" options="[['Red', '0xFF0000'], ['green', '0x00FF00'], ['blue', '0x0000FF'], ['Custom', '']]" on-change="
+						#InputText(visualColor_inp).text = $this.value;
+				" />
+				<Widget w="5"/>
+			</HBox>
+			<HBox w="300" h="21">
+				<Text text="'Upbeat (1) size %: '" w="120" align="'right'"/>
+				<InputText id="'upbeatSize_inp'" skin:Paint-border="1" w="75" text="Std.string(Main.visualSettingsVO.upbeatSize)"/>
+				<Widget w="105"/>
+			</HBox>
+			<HBox w="300" h="21">
+				<Text text="'Beat (2) size %: '" align="'right'" w="120" />
+				<InputText id="'beatSize_inp'" skin:Paint-border="1" w="75" text="Std.string(Main.visualSettingsVO.beatSize)"/>
+				<Widget w="105"/>
+			</HBox>
+			
+			<!--<Widget w="300" h="28" layout:Column-cols="[0.4,0.2, 5, 0.3]" >
+				<Text text="'Visual color: '" align="'right'" h="21" />
+				<InputText id="'visualColor_inp'" skin:Paint-border="1" w="220" h="21" text="Std.string(Main.visualSettingsVO.color)"/>
+				<Widget/>
+				<Options id="'colorOptions'" h="28" w="100" options="[['Red', '0xFF0000'], ['green', '0x00FF00'], ['blue', '0x0000FF']]" on-change="
+						#InputText(visualColor_inp).text = $this.value;
+				" />
+			</Widget>
+			<Widget w="300" h="21" layout:Column-cols="[0.4, 0.1]">
+				<Text text="'Upbeat (1) size %: '" align="'right'"/>
+				<InputText id="'upbeatSize_inp'" skin:Paint-border="1" w="75" text="Std.string(Main.visualSettingsVO.upbeatSize)"/>
+			</Widget>
+			<Widget w="300" h="21" layout:Column-cols="[0.4, 0.1]">
+				<Text text="'Beat (2) size %: '" align="'right'"/>
+				<InputText id="'beatSize_inp'" skin:Paint-border="1" w="75" text="Std.string(Main.visualSettingsVO.beatSize)"/>
+			</Widget>-->
+		</VBox>
+		<HBox bottom="10" widthPt="100" childPadding="10">
+			<Button id="'update_btn'" text="'Update'" w="100" on-click="
+				var ev:VisualSettingsEvent = new VisualSettingsEvent(VisualSettingsEvent.UPDATE);
+				ev.color = Std.parseInt(#Text(visualColor_inp).text);
+				ev.beatSize = Std.parseInt(#Text(beatSize_inp).text);
+				ev.upbeatSize = Std.parseInt(#Text(upbeatSize_inp).text);
+				
+				#Floating(visualPopup).dispatchEvent(ev);
+				
+			" />
+			<Button id="'cancel_btn'" text="'Cancel'" w="100" on-click="#Floating(visualPopup).hide();"/>
+		</HBox>
+	</Floating>
+</Widget>

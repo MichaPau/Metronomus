@@ -1,0 +1,25 @@
+{
+    "saves": [
+        {
+            "name": "Simple Tick 80",
+            "pattern": "1",
+            "speed": "80",
+            "changeSpeedFlag": false,
+            "changeSpeed": "0",
+            "changeMeasures": "0",
+            "countInFlag": false,
+            "sound1Name": "hihat01.wav",
+            "sound2Name": "hihat01.wav"
+        },
+		{
+            "name": "3/4 104",
+            "pattern": "122",
+            "speed": "104",
+            "changeSpeedFlag": false,
+            "changeSpeed": "0",
+            "changeMeasures": "0",
+            "countInFlag": false,
+            "sound1Name": "clav01.wav",
+            "sound2Name": "metronome01.wav"
+        }]
+}

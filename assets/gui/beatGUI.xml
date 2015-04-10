@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<VBox w="$Lib.current.stage.stageWidth" h="262" 
+	x="0" y="$Lib.current.stage.stageHeight-262" childPadding="5"
+	skin:Paint-color="0x333333" skin:Paint-border="2">
+	<HBox childPadding="5">
+		<Text text="'Pattern:'" format-size="18"/>
+		<InputText id="'measure_inp'" text="'122'" w="50" skin:Paint-border="1" format-size="18"/>
+		<Text text="'Speed:'" format-size="18"/>
+		<InputText id="'speed_inp'" text="'80'" w="35" skin:Paint-border="1" format-size="18"/>
+		<Bmp id="'help_pattern_btn'" h="20" w="20" stretch="true" src="'assets/img/question_mark_01.png'" 
+			tip:Tip-text="'Choose pattern: \n1 for the first sound selected \n2 for the second sound selected \n0 for silence \nfor example \n122 is a walz pattern \n1 only a tick (with sound 1) \n1222 standard 4/4 pattern '" />
+	</HBox>
+	<BoundSlider
+		id="'speed_slider'"
+		w = "200"
+		h = "15"
+		min = "40"
+		max = "300"
+		value = "0"
+		vertical = "false"
+		skin:Paint-border="1"
+		skin:Paint-corners="[20]"
+		slider-w = "15"
+		slider-heightPt = "100"
+		slider-skin:Gradient-colors = "[0xf8a30e, 0x000000]"
+		slider-skin:Gradient-corners="[20]"
+		/>
+	<HBox>
+		<!--<Text text="'Sound 1: '"/>-->
+		<Options id="'options1'" h="28"/>
+	</HBox>
+	<HBox>
+		<!--<Text text="'Sound 2: '"/>-->
+		<Options id="'options2'" h="28" />
+	</HBox>
+	<Button id="'toogleButton'" text="'Start'"/>
+	<Bmp id="'extendState_btn'" h="10" w="20" stretch="true" src="'assets/img/expand_down_01.png'" 
+			tip:Tip-text="'Show advanced settings'" />
+	<VBox id="'extendedState'" visible="false">
+		<HBox childPadding="5">
+			<Checkbox id="'speedToogle_chk'" text="'Change speed to'"/>
+			<InputText id="'speed2_inp'" w="35" skin:Paint-border="1" text="'0'" />
+			<Text text="' after '"/>
+			<InputText id="'speedChange_inp'" w="25" skin:Paint-border="1" text="'0'"/>
+			<Text text="' measures.'"/>
+		</HBox>
+		<HBox childPadding="5">
+			<Checkbox id="'muteToggle_chk'" text="'Mute from measure '"/>
+			<InputText id="'muteFrom_inp'" w="25" skin:Paint-border="1" text="'0'" />
+			<Text text="' to '"/>
+			<InputText id="'muteTo_inp'" w="25" skin:Paint-border="1" text="'0'"/>
+		</HBox>
+		<Checkbox id="'countIn_chk'" text="'Count in one measure'"/>
+	</VBox>
+	<Widget h="2" skin:Paint-color="0x000000" widthPt="100" />
+	<HBox childPadding="5">
+		<Text text="'Name:'"/>
+		<InputText id="'saveName_inp'" w="80" skin:Paint-border="1" text="''" />
+		<Button id="'save_btn'" text="'Save'" w="60" h="28" />
+		<Bmp id="'help_save_btn'" h="20" w="20" stretch="true" src="'assets/img/question_mark_01.png'" tip:Tip-text="'Saves the settings with a given name. \n(If the name already exists it will\n override the saved settings for that name)'" />
+	</HBox>
+	<HBox childPadding="5">
+		<Text text="'Load:'"/>
+		<Options id="'loadOptions'" h="28" w="135" />
+		<Button id="'delete_btn'" h="28" w="75" text="'Delete'" tip:Tip-text="'Delets the select setting.'"/>
+		<Bmp id="'help_delete_btn'" h="20" w="20" stretch="true" src="'assets/img/question_mark_01.png'" tip:Tip-text="'Delets the select setting from the list and from the saving. \n(But only if there is at least one left after deletion)'" />
+	</HBox>
+</VBox>
